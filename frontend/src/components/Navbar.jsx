@@ -1,88 +1,89 @@
-import { Link } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "./AuthContext"; // Import useAuth to manage user state and logout
 
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth(); // Get user info and logout function
 
   return (
-    <div className="min-h-screen bg-gray-100">
-    {/* Heading */}
-    <div className="text-center py-6">
-      <h1 className="text-4xl font-bold text-blue-800">RBAC System</h1>
-    </div>
-  
-    {/* Navbar Links */}
-    <nav className="bg-blue-800 text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <ul className="flex space-x-8 text-lg">
-          {user ? (
-            <>
-              <li>
-                <Link
+    <nav className="bg-blue-800 text-white fixed top-0 w-full shadow-lg z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Navbar Heading */}
+          <h1 className="text-2xl font-bold">RBAC System</h1>
+
+          {/* Navigation Links */}
+          <div className="flex space-x-6 items-center">
+            {user ? (
+              <>
+                <NavLink
                   to="/users"
-                  className="hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300"
+                  className={({ isActive }) =>
+                    `hover:underline ${
+                      isActive ? "underline font-semibold" : ""
+                    }`
+                  }
                 >
                   User List
-                </Link>
-              </li>
-              <li>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/roles"
-                  className="hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300"
+                  className={({ isActive }) =>
+                    `hover:underline ${
+                      isActive ? "underline font-semibold" : ""
+                    }`
+                  }
                 >
                   Role List
-                </Link>
-              </li>
-              <li>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/assign-permissions"
-                  className="hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300"
+                  className={({ isActive }) =>
+                    `hover:underline ${
+                      isActive ? "underline font-semibold" : ""
+                    }`
+                  }
                 >
                   Assign Permissions
-                </Link>
-              </li>
-              <li className="text-sm font-medium">Welcome, {user.username}</li>
-              <li>
+                </NavLink>
                 <button
                   onClick={logout}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition duration-300"
+                  className="hover:underline bg-red-600 px-4 py-1 rounded-md hover:bg-red-700 transition text-white"
                 >
                   Logout
                 </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Link
+              </>
+            ) : (
+              <>
+                <NavLink
                   to="/"
-                  className="hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300"
+                  className={({ isActive }) =>
+                    `hover:underline ${
+                      isActive ? "underline font-semibold" : ""
+                    }`
+                  }
                 >
                   Login
-                </Link>
-              </li>
-              <li>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/register"
-                  className="hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300"
+                  className={({ isActive }) =>
+                    `hover:underline ${
+                      isActive ? "underline font-semibold" : ""
+                    }`
+                  }
                 >
                   Register
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
+                </NavLink>
+              </>
+            )}
+          </div>
+
+          {/* Welcome Message */}
+          {user && <span className="text-sm font-medium">Welcome, {user.username}</span>}
+        </div>
       </div>
     </nav>
-  
-    {/* Dynamic Content Area */}
-    <div className="max-w-7xl mx-auto px-4 py-6">
-      <div className="p-6 border rounded-lg bg-white shadow-lg">
-        {/* Components rendered dynamically */}
-      </div>
-    </div>
-  </div>
-  
   );
 };
 
