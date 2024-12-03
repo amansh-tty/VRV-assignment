@@ -2,23 +2,21 @@ import { useState, useEffect } from 'react';
 import { getRoles, updateRole } from '../services/roleService';
 
 const AssignPermissions = () => {
-  const [roles, setRoles] = useState([]); // Stores fetched roles
-  const [permissions, setPermissions] = useState([]); // Available permissions
-  const [selectedRole, setSelectedRole] = useState(null); // Currently selected role
+  const [roles, setRoles] = useState([]);  
+  const [permissions, setPermissions] = useState([]);  
+  const [selectedRole, setSelectedRole] = useState(null);  
 
-  // Fetch roles and set them in the state
   useEffect(() => {
     const fetchRoles = async () => {
       try {
         const rolesData = await getRoles();
-        setRoles(rolesData); // Update roles state
+        setRoles(rolesData);  
       } catch (error) {
         console.error('Error fetching roles:', error);
         alert('Failed to fetch roles. Please check the server.');
       }
     };
 
-    // Dummy permissions for demonstration; replace with actual permissions fetch
     const fetchPermissions = () => {
       const permissionsList = ['read', 'write', 'delete', 'manage_roles'];
       setPermissions(permissionsList);
@@ -28,18 +26,16 @@ const AssignPermissions = () => {
     fetchPermissions();
   }, []);
 
-  // Handle permission checkbox changes
   const handlePermissionChange = (permission) => {
     if (!selectedRole) return;
 
     const updatedPermissions = selectedRole.permissions.includes(permission)
-      ? selectedRole.permissions.filter((perm) => perm !== permission) // Remove permission
-      : [...selectedRole.permissions, permission]; // Add permission
+      ? selectedRole.permissions.filter((perm) => perm !== permission)  
+      : [...selectedRole.permissions, permission]; 
 
     setSelectedRole({ ...selectedRole, permissions: updatedPermissions });
   };
 
-  // Save the changes for the selected role
   const saveChanges = async () => {
     if (!selectedRole) {
       alert('No role selected!');
@@ -78,7 +74,6 @@ const AssignPermissions = () => {
         )}
       </select>
 
-      {/* Permissions management */}
       {selectedRole && (
         <div>
           <h2 className="text-xl font-semibold mb-4">

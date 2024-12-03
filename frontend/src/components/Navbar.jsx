@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "./AuthContext"; // Import useAuth to manage user state and logout
+import { useAuth } from "./AuthContext"; 
 
 const Navbar = () => {
-  const { user, logout } = useAuth(); // Get user info and logout function
+  const { user, logout } = useAuth();
 
   return (
     <nav className="bg-blue-800 text-white fixed top-0 w-full shadow-lg z-50">
@@ -35,16 +35,7 @@ const Navbar = () => {
                 >
                   Role List
                 </NavLink>
-                {/* <NavLink
-                  to="/assign-permissions"
-                  className={({ isActive }) =>
-                    `hover:underline ${
-                      isActive ? "underline font-semibold" : ""
-                    }`
-                  }
-                >
-                  Assign Permissions
-                </NavLink> */}
+                
                 <button
                   onClick={logout}
                   className="hover:underline bg-red-600 px-4 py-1 rounded-md hover:bg-red-700 transition text-white"
@@ -78,7 +69,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Welcome Message */}
+          
           {user && <span className="text-sm font-medium">Welcome, {user.username}</span>}
         </div>
       </div>

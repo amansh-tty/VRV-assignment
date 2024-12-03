@@ -5,16 +5,16 @@ import Register from './pages/Register';
 import UserList from './pages/UserList';
 import RoleList from './pages/RoleList';
 import AssignPermissions from './pages/AssignPermissions';
-import AuthProvider, { useAuth } from './components/AuthContext'; // Correct import for AuthProvider
+import AuthProvider, { useAuth } from './components/AuthContext';  
 
 const ProtectedRoute = ({ element }) => {
   const { user } = useAuth();
-  return user ? element : <Navigate to="/" />; // Redirect to login page if not authenticated
+  return user ? element : <Navigate to="/" />;  
 };
 
 const App = () => {
   return (
-    <AuthProvider> {/* Wrap your app with AuthProvider */}
+    <AuthProvider>  
       <Router>
         <Navbar />
         <Routes>

@@ -16,10 +16,9 @@ const RoleList = () => {
     ];
     setUsers(fetchedUsers);
 
-    // Fetch roles from the service
     const fetchRoles = async () => {
       try {
-        const rolesData = await getRoles(); // Get roles from the service
+        const rolesData = await getRoles(); 
         setRoles(rolesData);
       } catch (error) {
         console.error('Error fetching roles:', error);
@@ -46,12 +45,12 @@ const RoleList = () => {
       return;
     }
     setUsers([...users, { id: Date.now(), username: newUser, role: 'Viewer' }]);
-    setNewUser(''); // Clear the input field
+    setNewUser('');  
   };
 
   const handleDeleteRole = async (roleId) => {
     try {
-      await deleteRole(roleId); // Delete role via the service
+      await deleteRole(roleId);  
       setRoles(roles.filter((role) => role._id !== roleId));
     } catch (error) {
       console.error('Error deleting role:', error);
@@ -67,7 +66,7 @@ const RoleList = () => {
     try {
       const addedRole = await addRole({ name: newRole });
       setRoles([...roles, addedRole]);
-      setNewRole(''); // Clear the input field
+      setNewRole('');  
     } catch (error) {
       console.error('Error adding role:', error);
       alert('Failed to add role. Please try again.');
@@ -98,7 +97,6 @@ const RoleList = () => {
           <tr className="bg-gray-200">
             <th className="border px-4 py-2 text-left">Username</th>
             <th className="border px-4 py-2 text-left">Role</th>
-            {/* <th className="border px-4 py-2 text-left">Assign Role</th> */}
             <th className="border px-4 py-2 text-left">Actions</th>
           </tr>
         </thead>
@@ -107,20 +105,7 @@ const RoleList = () => {
             <tr key={user.id} className="hover:bg-gray-50">
               <td className="border px-4 py-2">{user.username}</td>
               <td className="border px-4 py-2">{user.role}</td>
-              {/* <td className="border px-4 py-2">
-                <select
-                  value={user.role}
-                  onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                  className="border rounded-md px-2 py-1"
-                >
-                  <option value="">Select Role</option>
-                  {roles.map((role) => (
-                    <option key={role._id} value={role.name}>
-                      {role.name}
-                    </option>
-                  ))}
-                </select>
-              </td> */}
+               
               <td className="border px-4 py-2">
                 <button
                   onClick={() => handleDeleteUser(user.id)}
@@ -134,23 +119,7 @@ const RoleList = () => {
         </tbody>
       </table>
 
-      {/* Role List */}
-      {/* <h2 className="text-2xl font-bold mb-4">Role List</h2>
-      <div className="flex space-x-4 mb-4">
-        <input
-          type="text"
-          value={newRole}
-          onChange={(e) => setNewRole(e.target.value)}
-          placeholder="Enter new role"
-          className="flex-grow border px-4 py-2 rounded-md"
-        />
-        <button
-          onClick={handleAddRole}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-        >
-          Add Role
-        </button>
-      </div> */}
+      
       <ul className="divide-y divide-gray-200">
         {roles.map((role) => (
           <li key={role._id} className="py-2 flex justify-between items-center">
