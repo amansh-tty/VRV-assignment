@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "./AuthContext"; // Import useAuth to manage user state and logout
 
@@ -36,7 +35,7 @@ const Navbar = () => {
                 >
                   Role List
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/assign-permissions"
                   className={({ isActive }) =>
                     `hover:underline ${
@@ -45,7 +44,7 @@ const Navbar = () => {
                   }
                 >
                   Assign Permissions
-                </NavLink>
+                </NavLink> */}
                 <button
                   onClick={logout}
                   className="hover:underline bg-red-600 px-4 py-1 rounded-md hover:bg-red-700 transition text-white"
