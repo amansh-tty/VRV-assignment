@@ -20,7 +20,7 @@ This project demonstrates a Role-Based Access Control (RBAC) system for managing
 
 # User List Delete
 
-![User List](./assets/userlistdel.png)
+![User List](./assets/userlistDel.png)
 
 # Role List
 
